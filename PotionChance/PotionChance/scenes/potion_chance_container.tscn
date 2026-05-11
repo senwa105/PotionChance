@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqyhfutm42g8p"]
+
+[ext_resource type="Script" path="res://PotionChanceCode/NPotionChanceContainer.cs" id="1_7hga2"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="2_ff2k0"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="3_j8ru5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emyj4"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.173, 0.267, 0.314, 1.0)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="FontVariation" id="FontVariation_c2ipv"]
+base_font = ExtResource("2_ff2k0")
+spacing_glyph = 1
+
+[node name="PotionChanceContainer" type="PanelContainer"]
+offset_right = 95.0
+offset_bottom = 43.583332
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_emyj4")
+script = ExtResource("1_7hga2")
+
+[node name="PotionChanceLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.12549)
+theme_override_colors/font_outline_color = Color(0.0980392, 0.160784, 0.188235, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_c2ipv")
+theme_override_font_sizes/font_size = 28
+text = "N/A"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_j8ru5")
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.12549)
+theme_override_colors/font_outline_color = Color(0.0980392, 0.160784, 0.188235, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_c2ipv")
+theme_override_font_sizes/font_size = 28
+AutoSizeEnabled = false

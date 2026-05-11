@@ -1,0 +1,12 @@
+{
+  "POTION_CHANCE-ELITE_BONUS.title": "Elite",
+  "POTION_CHANCE-ELITE_BONUS.description": "[green]+12.5%[/green]",
+  "POTION_CHANCE-WHITE_BEAST_STATUE_BONUS.title": "White Beast Statue",
+  "POTION_CHANCE-WHITE_BEAST_STATUE_BONUS.description": "[green]+100%[/green]",
+  "POTION_CHANCE-TRUE_POTION_CHANCE.title": "True Potion Chance",
+  "POTION_CHANCE-TRUE_POTION_CHANCE.description": "{TrueChance}",
+  "POTION_CHANCE-ESTIMATED_POTION_CHANCE.title": "Estimated Potion Chance",
+  "POTION_CHANCE-ESTIMATED_POTION_CHANCE.description": "{EstimatedChance}",
+  "POTION_CHANCE-POTION_CHANCE_DISTRIBUTION.title": "Potion Chance Distribution",
+  "POTION_CHANCE-POTION_CHANCE_DISTRIBUTION.description": "[table=2]\n[cell][right]  0%:[/right][/cell] [cell padding=10,0,0,0]{P0}[/cell]\n[cell][right] 10%:[/right][/cell] [cell padding=10,0,0,0]{P1}[/cell]\n[cell][right] 20%:[/right][/cell] [cell padding=10,0,0,0]{P2}[/cell]\n[cell][right] 30%:[/right][/cell] [cell padding=10,0,0,0]{P3}[/cell]\n[cell][right] 40%:[/right][/cell] [cell padding=10,0,0,0]{P4}[/cell]\n[cell][right] 50%:[/right][/cell] [cell padding=10,0,0,0]{P5}[/cell]\n[cell][right] 60%:[/right][/cell] [cell padding=10,0,0,0]{P6}[/cell]\n[cell][right] 70%:[/right][/cell] [cell padding=10,0,0,0]{P7}[/cell]\n[cell][right] 80%:[/right][/cell] [cell padding=10,0,0,0]{P8}[/cell]\n[cell][right] 90%:[/right][/cell] [cell padding=10,0,0,0]{P9}[/cell]\n[cell][right]100%:[/right][/cell] [cell padding=10,0,0,0]{P10}[/cell]\n[/table]"
+}

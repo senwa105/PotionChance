@@ -1,0 +1,12 @@
+{
+  "POTION_CHANCE-ELITE_BONUS.title": "エリート",
+  "POTION_CHANCE-ELITE_BONUS.description": "[green]+12.5%[/green]",
+  "POTION_CHANCE-WHITE_BEAST_STATUE_BONUS.title": "白き獣の像",
+  "POTION_CHANCE-WHITE_BEAST_STATUE_BONUS.description": "[green]+100%[/green]",
+  "POTION_CHANCE-TRUE_POTION_CHANCE.title": "実際のポーション率",
+  "POTION_CHANCE-TRUE_POTION_CHANCE.description": "{TrueChance}",
+  "POTION_CHANCE-ESTIMATED_POTION_CHANCE.title": "推定のポーション率",
+  "POTION_CHANCE-ESTIMATED_POTION_CHANCE.description": "{EstimatedChance}",
+  "POTION_CHANCE-POTION_CHANCE_DISTRIBUTION.title": "ポーション率の分布",
+  "POTION_CHANCE-POTION_CHANCE_DISTRIBUTION.description": "  0%: {P0}\n 10%: {P1}\n 20%: {P2}\n 30%: {P3}\n 40%: {P4}\n 50%: {P5}\n 60%: {P6}\n 70%: {P7}\n 80%: {P8}\n 90%: {P9}\n100%: {P10}"
+}
