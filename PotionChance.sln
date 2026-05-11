@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PotionChance", "PotionChanc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PotionChanceEstimators", "PotionChanceEstimators\PotionChanceEstimators.csproj", "{2521A0EA-FAC7-4919-BA3D-C9E79E25B8A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PotionChanceEstimators.Test", "PotionChanceEstimators.Test\PotionChanceEstimators.Test.csproj", "{C5564DCA-2317-423C-AB19-DDEC07EFB38E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,5 +25,11 @@ Global
 		{2521A0EA-FAC7-4919-BA3D-C9E79E25B8A3}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
 		{2521A0EA-FAC7-4919-BA3D-C9E79E25B8A3}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{2521A0EA-FAC7-4919-BA3D-C9E79E25B8A3}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{C5564DCA-2317-423C-AB19-DDEC07EFB38E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5564DCA-2317-423C-AB19-DDEC07EFB38E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5564DCA-2317-423C-AB19-DDEC07EFB38E}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5564DCA-2317-423C-AB19-DDEC07EFB38E}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{C5564DCA-2317-423C-AB19-DDEC07EFB38E}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5564DCA-2317-423C-AB19-DDEC07EFB38E}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal
