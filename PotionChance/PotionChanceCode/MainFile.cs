@@ -1,6 +1,7 @@
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
+using System.Reflection;
 
 namespace PotionChance.PotionChanceCode;
 
@@ -15,6 +16,16 @@ public partial class MainFile : Node
 
     public static void Initialize()
     {
+        var assembly = Assembly.GetExecutingAssembly();
+        string? dirName = Path.GetDirectoryName(assembly.Location);
+        if (dirName is null)
+        {
+            throw new DirectoryNotFoundException("Could not determine the directory containing the executing assembly.");
+        }
+        Assembly.LoadFrom(dirName!.PathJoin("PotionChanceEstimators.dll"));
+        
+        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(assembly);
+        
         Harmony harmony = new(ModId);
 
         harmony.PatchAll();
