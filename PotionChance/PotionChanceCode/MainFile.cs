@@ -1,7 +1,8 @@
+using System.Reflection;
+using BaseLib.Config;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
-using System.Reflection;
 
 namespace PotionChance.PotionChanceCode;
 
@@ -25,6 +26,8 @@ public partial class MainFile : Node
         Assembly.LoadFrom(dirName!.PathJoin("PotionChanceEstimators.dll"));
         
         Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(assembly);
+        
+        ModConfigRegistry.Register(ModId, new PotionChanceConfig());
         
         Harmony harmony = new(ModId);
 
