@@ -105,6 +105,8 @@ public partial class NPotionChanceContainer : NClickableControl
             distributionDesc.Add($"P{i}", $"{belief[i]:F3}");
         }
 
+        AddWeightColors(distributionDesc);
+
         HoverTip distributionHoverTip = new HoverTip(
             new LocString(LocTable, "POTION_CHANCE-POTION_CHANCE_DISTRIBUTION.title"),
             distributionDesc
@@ -113,6 +115,18 @@ public partial class NPotionChanceContainer : NClickableControl
         hoverTips.Add(distributionHoverTip);
 
         return hoverTips;
+    }
+
+    private void AddWeightColors(LocString distributionDesc)
+    {
+        Belief belief = _tracker.Belief;
+        
+        for (int i = 0; i <= 10; i++)
+        {
+            Color gradated = StsColors.red.Lerp(StsColors.green, belief[i]);
+            Color color = belief[i] > 0f ? gradated : StsColors.gray;
+            distributionDesc.Add($"Color{i}", $"{color.ToHtml()}");
+        }
     }
     
     protected override void OnFocus()
