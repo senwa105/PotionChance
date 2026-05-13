@@ -1,18 +1,18 @@
 namespace PotionChanceEstimators;
 
-public class SimpleEstimator : IEstimator
+public class Sts1Estimator : IEstimator
 {
     private Belief _belief;
     
     public ref Belief Belief => ref _belief; 
     
-    public SimpleEstimator()
+    public Sts1Estimator()
     {
         _belief = default;
         _belief[4] = 1f; // Drop chance always starts at 40%
     }
     
-    public SimpleEstimator(Belief b) => _belief = b;
+    public Sts1Estimator(Belief b) => _belief = b;
 
     public void UpdateBelief(bool dropped, bool isElite, bool hasWhiteBeastStatue = false)
     {

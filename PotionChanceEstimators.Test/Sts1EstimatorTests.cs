@@ -2,13 +2,13 @@ using Xunit.Abstractions;
 
 namespace PotionChanceEstimators.Tests;
 
-public class SimpleEstimatorTests
+public class Sts1EstimatorTests
 {
     private const int Precision = 4;
     
     private readonly ITestOutputHelper _output;
     
-    public SimpleEstimatorTests(ITestOutputHelper output)
+    public Sts1EstimatorTests(ITestOutputHelper output)
     {
         _output = output;
     }
@@ -16,7 +16,7 @@ public class SimpleEstimatorTests
     [Fact]
     public void Constructor_InitialState_ShouldBe40Percent()
     {
-        var estimator = new SimpleEstimator();
+        var estimator = new Sts1Estimator();
         
         Assert.Equal(0.4f, estimator.GetExpectedChance(), Precision);
         Assert.Equal(1f, estimator.Belief[4], Precision);
@@ -25,7 +25,7 @@ public class SimpleEstimatorTests
     [Fact]
     public void UpdateBelief_NormalRoom_PotionDropped_ShouldShiftLeft()
     {
-        var estimator = new SimpleEstimator();
+        var estimator = new Sts1Estimator();
         
         estimator.UpdateBelief(dropped: true, isElite: false);
         
@@ -36,7 +36,7 @@ public class SimpleEstimatorTests
     [Fact]
     public void UpdateBelief_NormalRoom_NoPotion_ShouldShiftRight()
     {
-        var estimator = new SimpleEstimator();
+        var estimator = new Sts1Estimator();
         
         estimator.UpdateBelief(dropped: false, isElite: false);
         
@@ -47,7 +47,7 @@ public class SimpleEstimatorTests
     [Fact]
     public void UpdateBelief_EliteRoom_ShouldIgnoreEliteBonus()
     {
-        var estimator = new SimpleEstimator();
+        var estimator = new Sts1Estimator();
         
         estimator.UpdateBelief(dropped: true, isElite: true);
         
@@ -60,7 +60,7 @@ public class SimpleEstimatorTests
     {
         Belief b = default;
         b[Belief.MaxIndex] = 1f;
-        var estimator = new SimpleEstimator(b);
+        var estimator = new Sts1Estimator(b);
 
         estimator.UpdateBelief(dropped: false, isElite: false);
 
@@ -73,7 +73,7 @@ public class SimpleEstimatorTests
     {
         Belief b = default;
         b[Belief.MinIndex] = 1f;
-        var estimator = new SimpleEstimator(b);
+        var estimator = new Sts1Estimator(b);
 
         estimator.UpdateBelief(dropped: true, isElite: false);
         
@@ -86,7 +86,7 @@ public class SimpleEstimatorTests
     {
         Belief b = default;
         b[-2] = 1f; // Belief is -20%
-        var estimator = new SimpleEstimator(b);
+        var estimator = new Sts1Estimator(b);
         
         estimator.UpdateBelief(dropped: false, isElite: false);
         

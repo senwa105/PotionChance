@@ -8,7 +8,7 @@ internal class PotionChanceConfig : SimpleModConfig
 {
     public static bool ShowTrueChance { get; set; } = false;
     
-    public enum EstimatorType { HMM, Simple }
+    public enum EstimatorType { HMM, Sts1 }
     public static EstimatorType Estimator { get; set; } = EstimatorType.HMM;
 
     [ConfigHideInUI] 

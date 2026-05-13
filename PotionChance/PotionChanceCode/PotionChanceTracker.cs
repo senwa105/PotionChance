@@ -59,7 +59,7 @@ public class PotionChanceTracker : CustomSingletonModel
     {
         return PotionChanceConfig.Estimator switch
         {
-            PotionChanceConfig.EstimatorType.Simple => new SimpleEstimator(belief),
+            PotionChanceConfig.EstimatorType.Sts1 => new Sts1Estimator(belief),
             _ => new HmmEstimator(belief)
         };
     }
