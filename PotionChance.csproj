@@ -49,6 +49,8 @@
         <EmbeddedResource Remove="materials/**"/>
         <EmbeddedResource Remove="shaders/**"/>
         <EmbeddedResource Remove="images/**"/>
+        <Compile Remove=".godot\**" />
+        <EmbeddedResource Remove=".godot\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -57,12 +59,6 @@
         <None Include="PotionChance.json"/>
         <None Include="project.godot"/>
         <None Include="PotionChance/**"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\PotionChanceEstimators\PotionChanceEstimators.csproj">
-            <Private>true</Private>
-        </ProjectReference>
     </ItemGroup>
 
     <Target Name="CheckDependencyPaths">

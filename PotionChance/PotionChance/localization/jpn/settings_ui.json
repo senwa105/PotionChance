@@ -1,7 +1,0 @@
-{
-  "POTIONCHANCE.mod_title": "ポーションドロップ率推定ツール",
-  "POTIONCHANCE-SHOW_TRUE_CHANCE.title": "実際のポーションドロップ率を表示",
-  "POTIONCHANCE-SHOW_TRUE_CHANCE.hover.desc": "これは通常、プレイヤーが正確に把握することはできない。",
-  "POTIONCHANCE-ESTIMATOR.title": "推定方式 ",
-  "POTIONCHANCE-ESTIMATOR.hover.desc": "[gold]Simple[/gold]はエリートボーナスを無視するため、[gold]HMM[/gold]より精度は低いが、手計算が可能。[gold]HMM[/gold]を推奨します。"
-}

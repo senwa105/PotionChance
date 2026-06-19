@@ -1,0 +1,8 @@
+{
+  "POTION_CHANCE-ELITE_BONUS.title": "Elite Bonus",
+  "POTION_CHANCE-ELITE_BONUS.description": "[green]+12.5%[/green]",
+  "POTION_CHANCE-WHITE_BEAST_STATUE_BONUS.title": "White Beast Statue Bonus",
+  "POTION_CHANCE-WHITE_BEAST_STATUE_BONUS.description": "[green]+100%[/green]",
+  "POTION_CHANCE-CHANCE.title": "Potion Chance",
+  "POTION_CHANCE-CHANCE.description": "{Chance}"
+}

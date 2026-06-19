@@ -1,7 +1,0 @@
-{
-  "POTIONCHANCE.mod_title": "Potion Chance Estimator",
-  "POTIONCHANCE-SHOW_TRUE_CHANCE.title": "Show true potion chance",
-  "POTIONCHANCE-SHOW_TRUE_CHANCE.hover.desc": "This is normally impossible for the player to determine exactly.",
-  "POTIONCHANCE-ESTIMATOR.title": "Estimator",
-  "POTIONCHANCE-ESTIMATOR.hover.desc": "[gold]Simple[/gold] ignores the Elite bonus and is thus easily calculable but less accurate than [gold]HMM[/gold]. [gold]HMM[/gold] is recommended."
-}

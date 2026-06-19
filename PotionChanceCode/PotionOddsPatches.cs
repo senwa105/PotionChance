@@ -1,7 +1,6 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Odds;
 using MegaCrit.Sts2.Core.Rooms;
-using MegaCrit.Sts2.Core.Runs;
 
 namespace PotionChance.PotionChanceCode;
 
@@ -9,11 +8,9 @@ public static class PotionOddsEvents
 {
     public static event Action<bool, RoomType>? PotionRolled;
     public static event Action<float>? OddsOverridden;
-    public static event Action? RunEnded;
     
     public static void InvokePotionRolled(bool dropped, RoomType roomType) => PotionRolled?.Invoke(dropped, roomType);
     public static void InvokeOddsOverridden(float newValue) => OddsOverridden?.Invoke(newValue);
-    public static void InvokeRunEnded() => RunEnded?.Invoke();
 }
 
 [HarmonyPatch]
@@ -34,12 +31,5 @@ internal static class PotionOddsPatches
         {
             PotionOddsEvents.InvokeOddsOverridden(__instance.CurrentValue);
         }
-    }
-
-    [HarmonyPatch(typeof(RunManager), nameof(RunManager.OnEnded))]
-    [HarmonyPostfix]
-    static void OnEndedPostfix()
-    {
-        PotionOddsEvents.InvokeRunEnded();
     }
 }
