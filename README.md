@@ -2,7 +2,7 @@
 
 ![Mod screenshot](./PotionChance/mod_image.png)
 
-This is a potion chance display mod for Slay the Spire 2.
+This is a potion chance display mod for Slay the Spire 2, availabe on [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3747626895).
 
 This mod included an estimator (and was therefore signficantly more interesting) before the non-determinism bug was fixed in v0.106.0. See the [v1 branch](https://github.com/senwa105/PotionChance/tree/v1).
 
