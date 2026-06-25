@@ -19,4 +19,19 @@ public static class PotionChanceLabelPatch
         ____potionHolders.AddChildSafely(container);
         ____potionHolders.MoveChild(container, 0);
     }
+
+    [HarmonyPatch("get_FirstPotionControl")]
+    [HarmonyPostfix]
+    public static void FirstPotionControlPostfix(Control ____potionHolders, ref Control? __result)
+    {
+        __result = ____potionHolders.GetChild<NPotionChanceContainer>(0);
+    }
+    
+    [HarmonyPatch("UpdateNavigation")]
+    [HarmonyPostfix]
+    public static void UpdateNavigationPostfix(Control ____potionHolders, List<NPotionHolder> ____holders)
+    {
+        ____potionHolders.GetNodeOrNull<NPotionChanceContainer>("PotionChanceContainer")
+            ?.UpdateNavigation(____holders);
+    }
 }

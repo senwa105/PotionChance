@@ -4,8 +4,11 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
+using MegaCrit.Sts2.Core.Nodes.Potions;
+using MegaCrit.Sts2.Core.Nodes.Relics;
 
 namespace PotionChance.PotionChanceCode;
 
@@ -43,6 +46,23 @@ public partial class NPotionChanceContainer : NClickableControl
     public override void _ExitTree()
     {
         _tracker.ChanceUpdated -= OnChanceUpdated;
+    }
+
+    public void UpdateNavigation(List<NPotionHolder> holders)
+    {
+        Control? control = NRun.Instance?.GlobalUi.RelicInventory.RelicNodes.FirstOrDefault<NRelicInventoryHolder>();
+        if (control == null)
+        {
+            MainFile.Logger.Error("Failed to find NRelicInventoryHolder");
+            return;
+        }
+        
+        FocusNeighborLeft = NRun.Instance?.GlobalUi.TopBar.Gold.GetPath() ?? new NodePath();
+        FocusNeighborRight = holders[0].GetPath();
+        FocusNeighborBottom = control.GetPath();
+        FocusNeighborTop = GetPath();
+        
+        holders[0].FocusNeighborLeft = GetPath();
     }
 
     private List<IHoverTip> CreateHoverTips()
