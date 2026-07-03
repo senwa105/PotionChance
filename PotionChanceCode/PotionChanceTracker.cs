@@ -70,21 +70,23 @@ public class PotionChanceTracker : SingletonModel
         ChanceUpdated?.Invoke(TotalChance, HasEliteBonus || HasWhiteBeastStatue);
     }
 
-    private void OnPotionRolled(bool dropped, RoomType roomType)
+    private void OnPotionRolled(float newOdds, RoomType roomType)
     {
         HasEliteBonus = roomType == RoomType.Elite;
         HasWhiteBeastStatue = Player.Relics.Any(r => r is WhiteBeastStatue);
-        
-        Chance = Player.PlayerOdds.PotionReward.CurrentValue;
+
+        Chance = newOdds;
         MainFile.Logger.Info($"Chance updated to {Chance}.");
         
         ChanceUpdated?.Invoke(TotalChance, HasEliteBonus || HasWhiteBeastStatue);
     }
 
-    private void OnOddsOverridden(float newValue)
+    private void OnOddsOverridden(float newOdds)
     {
-        Chance = Player.PlayerOdds.PotionReward.CurrentValue;
+        Chance = newOdds;
         MainFile.Logger.Info($"Chance overridden to {Chance}.");
+        
+        ChanceUpdated?.Invoke(TotalChance, HasEliteBonus || HasWhiteBeastStatue);
     }
 
     private void OnRelicObtained(RelicModel relic)

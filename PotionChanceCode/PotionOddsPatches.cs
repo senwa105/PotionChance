@@ -6,11 +6,11 @@ namespace PotionChance.PotionChanceCode;
 
 public static class PotionOddsEvents
 {
-    public static event Action<bool, RoomType>? PotionRolled;
+    public static event Action<float, RoomType>? PotionRolled;
     public static event Action<float>? OddsOverridden;
     
-    public static void InvokePotionRolled(bool dropped, RoomType roomType) => PotionRolled?.Invoke(dropped, roomType);
-    public static void InvokeOddsOverridden(float newValue) => OddsOverridden?.Invoke(newValue);
+    public static void InvokePotionRolled(float newOdds, RoomType roomType) => PotionRolled?.Invoke(newOdds, roomType);
+    public static void InvokeOddsOverridden(float newOdds) => OddsOverridden?.Invoke(newOdds);
 }
 
 [HarmonyPatch]
@@ -18,9 +18,9 @@ internal static class PotionOddsPatches
 {
     [HarmonyPatch(typeof(PotionRewardOdds), nameof(PotionRewardOdds.Roll))]
     [HarmonyPostfix]
-    static void RollPostfix(PotionRewardOdds __instance, bool __result, RoomType roomType)
+    static void RollPostfix(PotionRewardOdds __instance, RoomType roomType)
     {
-        PotionOddsEvents.InvokePotionRolled(__result, roomType);
+        PotionOddsEvents.InvokePotionRolled(__instance.CurrentValue, roomType);
     }
 
     [HarmonyPatch(typeof(AbstractOdds), nameof(AbstractOdds.OverrideCurrentValue))]
