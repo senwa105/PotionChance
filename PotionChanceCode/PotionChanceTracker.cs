@@ -1,6 +1,6 @@
-using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Runs;
@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace PotionChance.PotionChanceCode;
 
-public class PotionChanceTracker : CustomSingletonModel
+public class PotionChanceTracker : SingletonModel
 {
     private Player? _player;
     
@@ -32,11 +32,20 @@ public class PotionChanceTracker : CustomSingletonModel
         }
     }
 
-    public PotionChanceTracker() : base(false, true)
+    public override bool ShouldReceiveCombatHooks => true;
+
+    public PotionChanceTracker()
     {
+        ModHelper.SubscribeForRunStateHooks(Id.Entry, RunSubModels);
+        
         RunManager.Instance.RunStarted += OnRunStarted;
         PotionOddsEvents.PotionRolled += OnPotionRolled;
         PotionOddsEvents.OddsOverridden += OnOddsOverridden;
+    }
+    
+    private IEnumerable<AbstractModel> RunSubModels(RunState runState)
+    {
+        return [this];
     }
     
     private void OnRunStarted(RunState runState)
