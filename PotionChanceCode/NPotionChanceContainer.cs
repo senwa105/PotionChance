@@ -3,7 +3,6 @@ using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
@@ -36,7 +35,7 @@ public partial class NPotionChanceContainer : NClickableControl
     {
         _potionChanceLabel = GetNode<Label>("PotionChanceLabel");
 
-        _tracker = ModelDb.Singleton<PotionChanceTracker>();
+        _tracker = PotionChanceTracker.Instance!;
         _tracker.ChanceUpdated += OnChanceUpdated;
         ConnectSignals();
 
