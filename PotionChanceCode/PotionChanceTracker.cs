@@ -35,6 +35,8 @@ public class PotionChanceTracker : IDisposable
             return Math.Min(1f, Chance + eliteBonus + wbsBonus);
         }
     }
+
+    private bool IsBlitzMode => _runState.GameMode == GameMode.Blitz;
     
     public static void Initialize()
     {
@@ -69,6 +71,21 @@ public class PotionChanceTracker : IDisposable
         InitPlayer();
     }
 
+    private float GetBlitzPotionChance()
+    {
+        if (_runState.CurrentRoom is not CombatRoom combatRoom)
+        {
+            return 0f;
+        }
+
+        return combatRoom.RoomType switch
+        {
+            RoomType.Monster => combatRoom.Encounter.IsWeak ? 0f : 1f,
+            RoomType.Boss => _runState.CurrentActIndex < 2 ? 1f : 0f,
+            _ => 0f
+        };
+    }
+
     private void InitPlayer()
     {
         Player? me = LocalContext.GetMe(_runState.Players);
@@ -82,15 +99,28 @@ public class PotionChanceTracker : IDisposable
         Player.RelicObtained += OnRelicObtained;
         Player.RelicRemoved += OnRelicRemoved;
         
-        Chance = Player.PlayerOdds.PotionReward.CurrentValue;
-        HasEliteBonus = _runState.CurrentRoom?.RoomType == RoomType.Elite;
-        HasWhiteBeastStatue = Player.Relics.Any(r => r is WhiteBeastStatue);
-        
+        if (IsBlitzMode)
+        {
+            Chance = GetBlitzPotionChance();
+            HasEliteBonus = false;
+            HasWhiteBeastStatue = false;
+        }
+        else
+        {
+            Chance = Player.PlayerOdds.PotionReward.CurrentValue;
+            HasEliteBonus = _runState.CurrentRoom?.RoomType == RoomType.Elite;
+            HasWhiteBeastStatue = Player.Relics.Any(r => r is WhiteBeastStatue);
+        }
         ChanceUpdated?.Invoke(TotalChance, HasEliteBonus || HasWhiteBeastStatue);
     }
 
     private void OnPotionRolled(RoomType roomType)
     {
+        if (IsBlitzMode)
+        {
+            return;
+        }
+
         HasEliteBonus = roomType == RoomType.Elite;
         HasWhiteBeastStatue = Player.Relics.Any(r => r is WhiteBeastStatue);
 
@@ -102,6 +132,11 @@ public class PotionChanceTracker : IDisposable
 
     private void OnOddsOverridden()
     {
+        if (IsBlitzMode)
+        {
+            return;
+        }
+
         Chance = Player.PlayerOdds.PotionReward.CurrentValue;
         MainFile.Logger.Info($"Chance overridden to {Chance}.");
         
@@ -110,6 +145,11 @@ public class PotionChanceTracker : IDisposable
 
     private void OnRelicObtained(RelicModel relic)
     {
+        if (IsBlitzMode)
+        {
+            return;
+        }
+
         if (relic is WhiteBeastStatue)
             HasWhiteBeastStatue = true;
         
@@ -118,6 +158,11 @@ public class PotionChanceTracker : IDisposable
 
     private void OnRelicRemoved(RelicModel relic)
     {
+        if (IsBlitzMode)
+        {
+            return;
+        }
+
         if (relic is WhiteBeastStatue)
             HasWhiteBeastStatue = false;
         
@@ -126,7 +171,16 @@ public class PotionChanceTracker : IDisposable
 
     private void OnRoomEntered()
     {
-        HasEliteBonus = _runState.CurrentRoom!.RoomType == RoomType.Elite;
+        if (IsBlitzMode)
+        {
+            Chance = GetBlitzPotionChance();
+            HasEliteBonus = false;
+            HasWhiteBeastStatue = false;
+        }
+        else
+        {
+            HasEliteBonus = _runState.CurrentRoom?.RoomType == RoomType.Elite;
+        }
         ChanceUpdated?.Invoke(TotalChance, HasEliteBonus || HasWhiteBeastStatue);
     }
     
