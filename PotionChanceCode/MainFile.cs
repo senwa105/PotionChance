@@ -18,11 +18,11 @@ public partial class MainFile : Node
     {
         var assembly = Assembly.GetExecutingAssembly();
         Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        
+
         Harmony harmony = new(ModId);
 
         harmony.PatchAll();
-        
+
         PotionChanceTracker.Initialize();
     }
 }

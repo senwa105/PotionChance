@@ -8,7 +8,7 @@ public static class PotionOddsEvents
 {
     public static event Action<RoomType>? PotionRolled;
     public static event Action? OddsOverridden;
-    
+
     public static void InvokePotionRolled(RoomType roomType) => PotionRolled?.Invoke(roomType);
     public static void InvokeOddsOverridden() => OddsOverridden?.Invoke();
 }

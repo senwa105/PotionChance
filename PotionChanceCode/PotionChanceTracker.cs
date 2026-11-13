@@ -10,11 +10,11 @@ namespace PotionChance.PotionChanceCode;
 public class PotionChanceTracker : IDisposable
 {
     private static bool _initialized = false;
-    
+
     public static PotionChanceTracker? Instance { get; private set; }
-    
+
     private Player? _player;
-    
+
     private Player Player => _player ?? throw new InvalidOperationException("Player accessed before initialization.");
 
     private RunState _runState;
@@ -25,7 +25,7 @@ public class PotionChanceTracker : IDisposable
     public bool HasWhiteBeastStatue { get; private set; }
 
     public float Chance { get; private set; }
-    
+
     public float TotalChance
     {
         get
@@ -37,13 +37,13 @@ public class PotionChanceTracker : IDisposable
     }
 
     private bool IsBlitzMode => _runState.GameMode == GameMode.Blitz;
-    
+
     public static void Initialize()
     {
         if (_initialized) return;
-        
+
         RunManager.Instance.RunStarted += OnRunStarted;
-        
+
         _initialized = true;
         MainFile.Logger.Info("PotionChanceTracker initialized.");
     }
@@ -53,9 +53,9 @@ public class PotionChanceTracker : IDisposable
         if (Instance != null)
         {
             MainFile.Logger.Info("Disposing previous PotionChanceTracker instance on run resume.");
-            Instance.Dispose(); 
+            Instance.Dispose();
         }
-        
+
         Instance = new PotionChanceTracker(runState);
         MainFile.Logger.Info("New PotionChanceTracker constructed.");
     }
@@ -63,7 +63,7 @@ public class PotionChanceTracker : IDisposable
     private PotionChanceTracker(RunState runState)
     {
         RunManager.Instance.RoomEntered += OnRoomEntered;
-        
+
         PotionOddsEvents.PotionRolled += OnPotionRolled;
         PotionOddsEvents.OddsOverridden += OnOddsOverridden;
 
@@ -90,7 +90,7 @@ public class PotionChanceTracker : IDisposable
     {
         Player? me = LocalContext.GetMe(_runState.Players);
         if (me == null)
-        { 
+        {
             MainFile.Logger.Warn("PotionChanceTracker failed to get player.");
             return;
         }
@@ -98,7 +98,7 @@ public class PotionChanceTracker : IDisposable
         _player = me;
         Player.RelicObtained += OnRelicObtained;
         Player.RelicRemoved += OnRelicRemoved;
-        
+
         if (IsBlitzMode)
         {
             Chance = GetBlitzPotionChance();
@@ -126,7 +126,7 @@ public class PotionChanceTracker : IDisposable
 
         Chance = Player.PlayerOdds.PotionReward.CurrentValue;
         MainFile.Logger.Info($"Chance updated to {Chance}.");
-        
+
         ChanceUpdated?.Invoke(TotalChance, HasEliteBonus || HasWhiteBeastStatue);
     }
 
@@ -139,7 +139,7 @@ public class PotionChanceTracker : IDisposable
 
         Chance = Player.PlayerOdds.PotionReward.CurrentValue;
         MainFile.Logger.Info($"Chance overridden to {Chance}.");
-        
+
         ChanceUpdated?.Invoke(TotalChance, HasEliteBonus || HasWhiteBeastStatue);
     }
 
@@ -152,7 +152,7 @@ public class PotionChanceTracker : IDisposable
 
         if (relic is WhiteBeastStatue)
             HasWhiteBeastStatue = true;
-        
+
         ChanceUpdated?.Invoke(TotalChance, HasEliteBonus || HasWhiteBeastStatue);
     }
 
@@ -165,7 +165,7 @@ public class PotionChanceTracker : IDisposable
 
         if (relic is WhiteBeastStatue)
             HasWhiteBeastStatue = false;
-        
+
         ChanceUpdated?.Invoke(TotalChance, HasEliteBonus || HasWhiteBeastStatue);
     }
 
@@ -183,13 +183,13 @@ public class PotionChanceTracker : IDisposable
         }
         ChanceUpdated?.Invoke(TotalChance, HasEliteBonus || HasWhiteBeastStatue);
     }
-    
+
     public void Dispose()
     {
         PotionOddsEvents.PotionRolled -= OnPotionRolled;
         PotionOddsEvents.OddsOverridden -= OnOddsOverridden;
         RunManager.Instance.RoomEntered -= OnRoomEntered;
-        
+
         if (_player != null)
         {
             _player.RelicObtained -= OnRelicObtained;
