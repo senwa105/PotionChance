@@ -6,6 +6,8 @@ This is a potion chance display mod for Slay the Spire 2, availabe on [Steam Wor
 
 This mod included an estimator (and was therefore signficantly more interesting) before the non-determinism bug was fixed in v0.106.0. See the [v1 branch](https://github.com/senwa105/PotionChance/tree/v1).
 
+Note: This branch (`main`) is for the public beta of Slay the Spire 2 on Steam. See the `public` branch for the version of this mod for the default public version of StS2.
+
 ## How does potion chance work?
 
 The basics in Slay the Spire 2 are the same from StS1: Your potion chance starts at 40% and at the end of every fight, potion chance decreases/increases by 10% depending on whether a potion drops/does not drop.
