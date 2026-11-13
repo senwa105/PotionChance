@@ -13,3 +13,11 @@ The basics in Slay the Spire 2 are the same from StS1: Your potion chance starts
 However, there are two changes to the mechanic from the first game:
 1. The potion chance does not reset to 40% at the start of a new act.
 2. Elites have a bonus 12.5% chance to drop a potion.
+
+### Blitz Mode:
+
+Blitz Mode, added in version 0.113.0, has a very simplified potion drop system.
+- The first combat of each act is guaranteed to be a weak pool encounter and has a 0% chance to drop a potion.
+- The second combat of each act will be from the strong pool and has a 100% chance to drop a potion.
+- Elites have a 0% chance to drop a potion.
+- The Act 1 and 2 bosses have a 100% chance to drop a potion.
